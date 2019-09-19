@@ -1,5 +1,3 @@
-var e=document.createElement('div');
-e.id='lRiqNkyKpAaE';
-e.style.display='none';
-document.body.appendChild(e);
-
+(function (i, o, g) {
+    i[o] = g;
+})(window, 'adblocker', false);
