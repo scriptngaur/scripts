@@ -1,32 +1,18 @@
-document.addEventListener('DOMContentLoaded', init, false);
+function adsBlocked( callback ) {
+        var AdsURL = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
 
-function init(){
-  adsBlocked(function(blocked){
-    if(blocked){
-      document.getElementById('result').innerHTML = 'ads are blocked';
-    } else {
-      document.getElementById('result').innerHTML = 'ads are not blocked';
+        var RequestSettings = {
+            method: 'HEAD',
+            mode: 'no-cors'
+        };
+
+        var DeBlockerRequest = new Request( AdsURL, RequestSettings );
+
+        fetch( DeBlockerRequest ).then( function ( response ) {
+            return response;
+        } ).then( function ( response ) {
+            callback( false );
+        } ).catch( function ( e ) {
+            callback( true );
+        });
     }
-  })
-}
-
-function adsBlocked(callback){
-  var testURL = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'
-
-  var myInit = {
-    method: 'HEAD',
-    mode: 'no-cors'
-  };
-
-  var myRequest = new Request(testURL, myInit);
-
-  fetch(myRequest).then(function(response) {
-    return response;
-  }).then(function(response) {
-    console.log(response);
-    callback(false)
-  }).catch(function(e){
-    console.log(e)
-    callback(true)
-  });
-}
